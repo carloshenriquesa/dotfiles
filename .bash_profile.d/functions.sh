@@ -22,16 +22,16 @@ function ec2ssh() {
     echo 'use: ec2ssh $INSTANCE' >&2
     return 2
   fi
-  DESCRIBE=$(ec2-describe-instances "$INSTANCE")
-  ADDRESS=$(echo "$DESCRIBE" | awk '$1 ~ /^INSTANCE$/ { print $4; }')
-  ADDRESS="${ADDRESS% *}"
+  DESCRIBE=$(aws ec2 describe-instances --output json --instance-ids "$INSTANCE")
+  ADDRESS=$(echo "$DESCRIBE" | jq -r '.Reservations[].Instances[].PublicDnsName')
+  ENVIRONMENT=$(echo "$DESCRIBE" | jq -r '.Reservations[].Instances[].Tags[] | "\(.Key)=\(.Value)"')
   if [[ -n "$ADDRESS" ]]
   then
-    if [[ `echo "$DESCRIBE" | grep "production"` ]]
+    if [[ `echo "$ENVIRONMENT" | grep "Environment=production"` ]]
     then
       setBackground 250000
     fi
-    if [[ `echo "$DESCRIBE" | grep "sandbox"` ]]
+    if [[ `echo "$ENVIRONMENT" | grep "Environment=sandbox"` ]]
     then
       setBackground 000025
     fi
