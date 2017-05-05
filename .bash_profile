@@ -14,6 +14,7 @@ source $HOME/.bash_profile.d/exports.sh
 source $HOME/.bash_profile.d/functions.sh
 source $HOME/.bash_profile.d/settings.sh
 source $HOME/.bash_profile.d/ruby.sh
+source $HOME/.bash_profile.d/javascript.sh
 
 # Stuff I don't want public avaiable
 [ -r $HOME/.bash_profile_extras ] && source $HOME/.bash_profile_extras
