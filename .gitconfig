@@ -44,10 +44,10 @@
 [help]
   autocorrect = 1
 [user]
-  name = Rodrigo Tassinari de Oliveira
-  email = rodrigo@pittlandia.net
+  name = Carlos Henrique Sá
+  email = contato@carloshenriquesa.com.br
 [github]
-  user = rodrigotassinari
+  user = carloshenriquesa
 [grep]
   extendRegexp = true
   lineNumber = true
